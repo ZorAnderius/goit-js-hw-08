@@ -1,0 +1,14 @@
+.link-wrap {
+  padding-top: 30px;
+  padding-left: 40px;
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#vimeo-player {
+  padding: 0;
+  display: block;
+  margin: auto;
+}
