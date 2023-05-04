@@ -6,6 +6,7 @@ const ref = {
   txtAreaEl: document.querySelector('textarea[name="message"]'),
 };
 let formData = {};
+let isEmpty = false;
 
 ref.submitFormEl.addEventListener('input', throttle(onInputForm, 500));
 
@@ -34,6 +35,10 @@ function onSubmitForm(e) {
   const message = ref.txtAreaEl.value;
 
   checkInputField(email, message);
+  if (isEmpty) {
+    isEmpty = false;
+    return;
+  }
 
   const saveData = localStorage.getItem('feedback-form-state');
   const formDataSubmit = JSON.parse(saveData);
@@ -46,6 +51,7 @@ function onSubmitForm(e) {
 }
 
 function checkInputField(email, message) {
+  isEmpty = true;
   if (!email && !message) {
     alert('Please enter a valid email and write a message');
     return;
