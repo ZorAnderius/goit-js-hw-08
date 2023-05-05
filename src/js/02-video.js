@@ -16,8 +16,11 @@ function onCheckTimeUpdate(event) {
   );
 }
 
-const getDataFromStorage = localStorage.getItem('videoplayer-current-time');
+// const getDataFromStorage = localStorage.getItem('videoplayer-current-time');
+const getDataFromStorage = null;
+// if (getDataFromStorage) {
 const parsData = JSON.parse(getDataFromStorage);
 console.log(parsData);
 
 player.setCurrentTime(parsData);
+// }
