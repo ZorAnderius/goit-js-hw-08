@@ -16,11 +16,13 @@ function onCheckTimeUpdate(event) {
   );
 }
 
-// const getDataFromStorage = localStorage.getItem('videoplayer-current-time');
-const getDataFromStorage = null;
-// if (getDataFromStorage) {
-const parsData = JSON.parse(getDataFromStorage);
-console.log(parsData);
+const getDataFromStorage = localStorage.getItem('videoplayer-current-time');
 
-player.setCurrentTime(parsData);
-// }
+if (getDataFromStorage) {
+  const parsData = JSON.parse(getDataFromStorage);
+  console.log(parsData);
+
+  player.setCurrentTime(parsData);
+} else {
+  alert('Wrong time');
+}
