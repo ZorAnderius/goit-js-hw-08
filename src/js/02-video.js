@@ -2,8 +2,6 @@ import Player from '@vimeo/player';
 
 const throttle = require('lodash.throttle');
 
-console.log(Player);
-
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
@@ -17,12 +15,23 @@ function onCheckTimeUpdate(event) {
 }
 
 const getDataFromStorage = localStorage.getItem('videoplayer-current-time');
+const parsData = JSON.parse(getDataFromStorage);
 
-if (getDataFromStorage) {
-  const parsData = JSON.parse(getDataFromStorage);
-  console.log(parsData);
+console.log(parsData);
 
-  player.setCurrentTime(parsData);
-} else {
-  alert('Wrong time');
-}
+player
+  .setCurrentTime(parsData)
+  .then(function (seconds) {
+    // seconds = the actual time that the player seeked to
+  })
+  .catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        console.log(error.message);
+        break;
+
+      default:
+        console.log(`${error.message}It is not a number`);
+        break;
+    }
+  });
